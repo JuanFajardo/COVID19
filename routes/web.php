@@ -16,7 +16,6 @@ Route::post('/GuardaLaboratorio', 'LaboratorioController@GuardaLaboratorio');
 Route::get('/VerLaboratorio/{id}', 'LaboratorioController@VerLaboratorio');
 Route::post('/ActualizaLaboratorio', 'LaboratorioController@ActualizaLaboratorio');
 
-
 Route::get('/Tipo', 'TipoController@index');
 Route::post('/GuardaTipo', 'TipoController@GuardaTipo');
 Route::get('/BuscarTipo/{id}', 'TipoController@BuscarTipo');
@@ -70,8 +69,13 @@ Route::post('/ActualizaMunicipio', 'MunicipioController@ActualizaMunicipio');
 Route::post('/EliminarMunicipio', 'MunicipioController@EliminarMunicipios');
 Route::get('/BuscarDatosGrafico/{id}', 'MunicipioController@BuscarDatosGrafico');
 
-
 Route::get('/CargarMarcadores/{id}', 'MapaController@CargarMarcadores');
+
+/***** RUTAS Bett0 ********************************************************/
+Route::resource('Institucion', 'InstitucionController');
+Route::resource('Prueba', 'PruebaController');
+Route::get('Prueba/Reporte/{id}', 'PruebaController@getReporte')->name('pruebaLaboratorio.pdf');
+
 
 /***** RUTAS PARTE GOBERNACION ********************************************/
 Route::get('/consentimientoform','PaginasController@consentimientoform');

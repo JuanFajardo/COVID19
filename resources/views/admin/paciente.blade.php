@@ -100,6 +100,9 @@
 <button class="btn btn-primary dim" type="button" id="{{$dato->id}}" onclick="AsignarArbol(this.id)" data-toggle="tooltip" data-placement="top" title="Agregar Arbol">
   <i class="fa fa-sitemap"></i>
 </button>
+                <a href="{{asset('index.php/Laboratorio?paciente='.$dato->id)}}" class="btn btn-danger dim"  data-toggle="tooltip" data-placement="top" title="Laboratorio">
+                  <i class="fa fa-eyedropper"></i>
+                </a>
               </td>
             </tr>
             @endforeach
@@ -1066,4 +1069,3 @@ $("#Nuevo").modal('hide');
 
 </script>
 @endsection
-

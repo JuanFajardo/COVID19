@@ -58,6 +58,14 @@
                 <li>
                     <a href="{{asset('/index.php/Fumigacion')}}"><i class="fa fa-arrows"></i> <span class="nav-label">Fumigacion</span></a>
                 </li>
+
+                <li  @yield("institucion")>
+                    <a href="{{asset('/index.php/Institucion')}}"><i class="fa fa-bank"></i> <span class="nav-label">Instituciones</span></a>
+                </li>
+                <li @yield("laboratorio")>
+                    <a href="{{asset('/index.php/Prueba')}}"><i class="fa fa-eyedropper"></i> <span class="nav-label">Pruebas de Laboratorio</span></a>
+                </li>
+
                 <li @yield("menu2")>
                     <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Casos COVID</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
@@ -192,4 +200,3 @@
 </body>
 
 </html>
-
