@@ -70,11 +70,17 @@
                       <li @yield("submenu23")>
                           <a href="{{asset('/index.php/Paciente')}}">Paciente</a>
                       </li>
-                      <li @yield("submenu23")>
+                      <li @yield("submenu24")>
                           <a href="{{asset('/index.php/Laboratorio')}}">Laboratorio</a>
                       </li>
-                      <li @yield("submenu24")>
-                          <a href="{{asset('/index.php/Municipio')}}">Datos Municipales</a>
+                      <li @yield("submenu25")>
+                          <a href="{{asset('/index.php/monitoreoexteriorlist')}}">Ingreso personas exterior</a>
+                      </li>
+                      <li @yield("submenu26")>
+                          <a href="{{asset('/index.php/consentimientolist')}}">Consentimiento cuarentena</a>
+                      </li>
+                      <li @yield("submenu27")>
+                          <a href="{{asset('/index.php/tarjetamonitoreo')}}">Tarjeta monitoreo individual</a>
                       </li>
                     </ul>
                 </li>

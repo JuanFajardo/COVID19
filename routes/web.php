@@ -68,3 +68,20 @@ Route::get('/BuscarDatosGrafico/{id}', 'MunicipioController@BuscarDatosGrafico')
 
 Route::get('/CargarMarcadores/{id}', 'MapaController@CargarMarcadores');
 
+/***** RUTAS PARTE GOBERNACION ********************************************/
+Route::get('/consentimientoform','PaginasController@consentimientoform');
+Route::get('/consentimientolist','PaginasController@consentimientolist');
+Route::get('/tarjetamonitoreo','PaginasController@tarjetamonitoreo');
+Route::get('/tarjetamonitoreoform','PaginasController@tarjetamonitoreoform');
+Route::get('/vermapasimple','PaginasController@vermapasimple');
+Route::post('/saveform','PaginasController@saveform');
+Route::post('/savetarjetaform','PaginasController@savetarjetaform');
+Route::get('/consentimientopdf','PaginasController@consentimientopdf')->name('consentimiento.pdf');
+Route::get('/tarjetamonitoreopdf','PaginasController@tarjetamonitoreopdf')->name('tarjetamonitoreo.pdf');
+Route::get('/monitoreoexteriorlist','PaginasController@monitoreoexteriorlist');
+Route::get('/monitoreoexteriorform','PaginasController@monitoreoexteriorform');
+Route::post('/saveexteriorform','PaginasController@saveexteriorform');
+Route::get('/listapacientesexterior','PaginasController@listapacientesexteriorpdf');
+Route::get('/tarjetapacienteexteriorpdf','PaginasController@tarjetapacienteexteriorpdf');
+
+/******** FIN RUTAS PARTE GOBERNACION **************************************/
