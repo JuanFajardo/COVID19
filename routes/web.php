@@ -1,10 +1,15 @@
 <?php
 
-Route::get('/','MapaController@Pagina');
+//Route::get('/','MapaController@Pagina');
+
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home.raiz');
+
+Route::get('/home', function(){
+  return view('layouts.app');
+})->name('home');
 
 Route::get('/Laboratorio', 'LaboratorioController@index');
 Route::post('/GuardaLaboratorio', 'LaboratorioController@GuardaLaboratorio');

@@ -14,6 +14,8 @@ class CreatePacienteTable extends Migration
     public function up()
     {
           Schema::create('paciente', function (Blueprint $table) {
+
+
             $table->increments('id');
             $table->string('nombre');
             $table->string('vinculo');
@@ -27,6 +29,15 @@ class CreatePacienteTable extends Migration
             $table->double('longitud');
             $table->double('latitud');
             $table->smallInteger('id_usuario');
+
+            $table->smallInteger('id_enfermedad_base');
+            $table->string('nacionalidad');
+            $table->string('institucion');
+            $table->string('grupo_familiar');
+            $table->date('fecha_captacion');
+            $table->date('fecha_inicio_sintomas');
+            $table->smallInteger('id_municipio');
+
             $table->foreign('id_usuario')->references('id')->on('users');
             $table->timestamps();
           });

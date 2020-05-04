@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Paciente;
+use App\paciente;
 use Illuminate\Support\Facades\Response;
 use App\Consentimiento;
 use App\Tarjetamonitoreo;
@@ -28,7 +28,7 @@ class PaginasController extends Controller
       $paciente = Paciente::find($id);
       $consentimiento1 = Consentimiento::where('id_paciente', $id)->first();
       if ($consentimiento1)
-      { 
+      {
           return view('gob.consentimientoform')->with('paciente', $paciente)->with('consentimiento', $consentimiento1);
       }
       else
@@ -48,8 +48,8 @@ class PaginasController extends Controller
           $consentimiento->id=0;
           return view('gob.consentimientoform')->with('paciente', $paciente)->with('consentimiento', $consentimiento);
       }
-      
-      
+
+
     }
     public function tarjetamonitoreoform(Request $request)
     {
@@ -57,15 +57,15 @@ class PaginasController extends Controller
       $paciente = Paciente::find($id);
       $tarjetamonitoreo1 = Tarjetamonitoreo::where('id_paciente', $id)->first();
       if ($tarjetamonitoreo1)
-      { 
-          
+      {
+
           $fecha = $tarjetamonitoreo1->fecha_inicio;
           $seguimientos=Seguimiento::where('id_tarjetamonitoreo', $tarjetamonitoreo1->id)->orderBy('dia', 'ASC')->get();
           $dias1 = array();
           foreach ($seguimientos as $seguimiento) {
             $unarray = [$seguimiento->dia, $seguimiento->fecha, $seguimiento->temperatura, $seguimiento->tos, $seguimiento->dificultad_respiratoria, $seguimiento->responsable];
-            array_push($dias1, $unarray);            
-          }          
+            array_push($dias1, $unarray);
+          }
           return view('gob.tarjetamonitoreoform')->with('paciente', $paciente)->with('tarjetamonitoreo', $tarjetamonitoreo1)->with('dias', $dias1);
       }
       else
@@ -88,26 +88,26 @@ class PaginasController extends Controller
 
           return view('gob.tarjetamonitoreoform')->with('paciente', $paciente)->with('tarjetamonitoreo', $tarjetamonitoreo)->with('dias', $dias1);
       }
-      
-      
+
+
     }
     public function vermapasimple()
     {
         $lat=request('dom_lat', '2');
-        $lon=request('dom_lon', '2');      
+        $lon=request('dom_lon', '2');
         return view('gob.vermapasimple')->with('dom_lat', $lat)->with('dom_lon', $lon);
     }
     public function saveform(Request $request)
     {
-      $id=request('id', '0'); 
+      $id=request('id', '0');
       if ($id>0)
       {
          $consentimiento = Consentimiento::find($id);
          $consentimiento->dom_lon=request('dom_lon');
          $consentimiento->dom_lat=request('dom_lat');
          $consentimiento->fecha_aceptacion=request('fecha_aceptacion');
-         $consentimiento->hora_aceptacion=request('hora_aceptacion');        
-      }   
+         $consentimiento->hora_aceptacion=request('hora_aceptacion');
+      }
       else
       {
          $consentimiento = new Consentimiento();
@@ -115,7 +115,7 @@ class PaginasController extends Controller
          $consentimiento->dom_lon=request('dom_lon');
          $consentimiento->dom_lat=request('dom_lat');
          $consentimiento->fecha_aceptacion=request('fecha_aceptacion');
-         $consentimiento->hora_aceptacion=request('hora_aceptacion'); 
+         $consentimiento->hora_aceptacion=request('hora_aceptacion');
       }
       $consentimiento->save();
       $pacientes = paciente::orderBy('id', 'ASC')->get();
@@ -129,13 +129,13 @@ class PaginasController extends Controller
         $sMapa= public_path("test5".".png");
         $sLat=40.714728;
         $sLong=-73.998672;
-        
-        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);  
+
+        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
 
         $pdf = $pdf->loadView('gob.consentimientopdf', compact('paciente', 'consentimiento'));
         return $pdf->download('listado.pdf');
-        
-        
+
+
     }
     public function tarjetamonitoreo()
     {
@@ -144,7 +144,7 @@ class PaginasController extends Controller
     }
     public function savetarjetaform(Request $request)
     {
-      $id=request('id', '0'); 
+      $id=request('id', '0');
       if ($id>0)
       {
          $tarjetamonitoreo = Tarjetamonitoreo::find($id);
@@ -162,7 +162,7 @@ class PaginasController extends Controller
              if ($seguimiento){
              }
              else{
-                $seguimiento = new Seguimiento(); 
+                $seguimiento = new Seguimiento();
              }
 
              $seguimiento->dia = $request->input('dia.'.$i);
@@ -174,7 +174,7 @@ class PaginasController extends Controller
              $seguimiento->id_tarjetamonitoreo = $id;
              $seguimiento->save();
          }
-      }   
+      }
       else
       {
          $tarjetamonitoreo = new Tarjetamonitoreo();
@@ -197,9 +197,9 @@ class PaginasController extends Controller
              $seguimiento->responsable = $request->input('responsable.'.$i);;
              $seguimiento->id_tarjetamonitoreo = $id_tarjetamonitoreo;
              $seguimiento->save();
-         } 
+         }
       }
-      
+
       $pacientes = paciente::orderBy('id', 'ASC')->get();
       return view('gob.tarjetamonitoreo')->with('pacientes', $pacientes);
     }
@@ -209,15 +209,15 @@ class PaginasController extends Controller
       $paciente = Paciente::find($id);
       $tarjetamonitoreo = Tarjetamonitoreo::where('id_paciente', $id)->first();
       if ($tarjetamonitoreo)
-      { 
+      {
           $fecha = $tarjetamonitoreo->fecha_inicio;
           $seguimientos=Seguimiento::where('id_tarjetamonitoreo', $tarjetamonitoreo->id)->orderBy('dia', 'ASC')->get();
           $dias = array();
           foreach ($seguimientos as $seguimiento) {
             $unarray = [$seguimiento->dia, $seguimiento->fecha, $seguimiento->temperatura, $seguimiento->tos, $seguimiento->dificultad_respiratoria, $seguimiento->responsable];
-            array_push($dias, $unarray);            
-          }          
-      }      
+            array_push($dias, $unarray);
+          }
+      }
         $pdf = PDF::loadView('gob.tarjetamonitoreopdf', compact('paciente', 'tarjetamonitoreo', 'dias'));
         return $pdf->download('listado.pdf');
     }
@@ -232,12 +232,12 @@ class PaginasController extends Controller
       $paciente = Paciente::find($id);
       if (!$paciente){
          $paciente = new Paciente();
-      }  
+      }
       $paciente_exterior = Paciente_exterior::where('id_paciente', $id)->first();
       if ($paciente_exterior)
-      {         
-                  
-          
+      {
+
+
       }
       else
       {
@@ -251,16 +251,16 @@ class PaginasController extends Controller
           $paciente_exterior->id_paciente = $id;
       }
       return view('gob.monitoreoexteriorform')->with('paciente', $paciente)->with('paciente_exterior', $paciente_exterior);
-      
+
     }
     public function saveexteriorform(Request $request)
     {
-      $id=request('id', '0'); 
+      $id=request('id', '0');
       if ($id>0)
       {
          $paciente_exterior = Paciente_exterior::find($id);
-                 
-      }   
+
+      }
       else
       {
          $paciente_exterior = new Paciente_exterior();
@@ -277,17 +277,17 @@ class PaginasController extends Controller
     }
     public function listapacientesexteriorpdf()
     {
-      $pacientes = Paciente::all();       
+      $pacientes = Paciente::all();
       $pdf = PDF::loadView('gob.listapacientesexteriorpdf', compact('pacientes'));
         return $pdf->download('listado.pdf');
     }
     public function tarjetapacienteexteriorpdf()
     {
       $id=request('id', '0');
-      $paciente = Paciente::find($id);       
+      $paciente = Paciente::find($id);
       $pdf = PDF::loadView('gob.tarjetapacienteexteriorpdf', compact('paciente'));
         return $pdf->download('listado.pdf');
     }
     /******************************************/
-    
+
 }

@@ -18,6 +18,7 @@ class CreateEstadoTable extends Migration
           $table->string('estado');
           $table->smallInteger('id_usuario');
           $table->foreign('id_usuario')->references('id')->on('users');
+          $table->string('clase');
           $table->timestamps();
         });
     }
