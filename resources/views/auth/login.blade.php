@@ -8,7 +8,7 @@
 <html lang="zxx">
 
 <head>
-    <title>Iniciar Session Sistema Transporte GAMP v.3.0</title>
+    <title>Sistema v.3.0 GAMP <?php  echo date('Y');?></title>
     <!-- Meta-Tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
