@@ -18,9 +18,11 @@ class CreateHistorialTable extends Migration
         $table->smallInteger('id_estado');
         $table->date('fecha');
         $table->smallInteger('habilitado');
-        $table->smallInteger('id_paciente');
+        //$table->smallInteger('id_paciente');
+        $table->string('id_paciente', 50)->nullable()->comment('globalid');
         $table->smallInteger('id_usuario');
-        $table->foreign('id_paciente')->references('id')->on('paciente');
+
+        //$table->foreign('id_paciente')->references('globalid')->on('paciente');
         $table->foreign('id_estado')->references('id')->on('estado');
         $table->foreign('id_usuario')->references('id')->on('users');
         $table->timestamps();
