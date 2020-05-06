@@ -15,6 +15,9 @@ class CreateArbolTable extends Migration
     {
         Schema::create('arbol', function (Blueprint $table) {
             $table->increments('id');
+            $table->smallInteger('id_paciente');
+            $table->smallInteger('parent_id');
+            $table->smallInteger('id_usuario');
             $table->timestamps();
         });
     }
