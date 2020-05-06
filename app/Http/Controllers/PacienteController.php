@@ -19,17 +19,21 @@ class PacienteController extends Controller
 
     public function index()
     {
-$municipio=municipio::orderBy("id")->get();
+      $municipio=municipio::orderBy("id")->get();
       $estado=estado::orderBy("id")->get();
       $enfermedad=enfermedad::orderBy("id")->get();
-      $datos=paciente::join("historial","historial.id_paciente","=","paciente.id")
-      ->join("estado","estado.id","=","historial.id_estado")
-      ->join("enfermedad","enfermedad.id","=","paciente.id_enfermedad_base")
+
+      /*$datos=paciente::join("historial","historial.id_paciente","=","paciente.id")
+      ->join("estado","estado.id","=","historial.id_estado")*/
+
+      $datos=paciente::join("enfermedad","enfermedad.id","=","paciente.id_enfermedad_base")
       ->select('paciente.id', 'paciente.nombre','paciente.vinculo','paciente.edad','paciente.sexo','paciente.fecha_nacimiento',
               'paciente.telefono','paciente.zona','paciente.domicilio','paciente.observaciones','paciente.longitud','paciente.latitud',
               'paciente.id_enfermedad_base','paciente.nacionalidad','paciente.institucion','paciente.grupo_familiar','paciente.fecha_captacion','paciente.fecha_inicio_sintomas',
-              'historial.id_estado','historial.fecha','estado.estado','estado.clase','enfermedad.enfermedad')
-      ->where("historial.habilitado",0)
+              'paciente.*',
+              //'historial.id_estado','historial.fecha','estado.estado','estado.clase',
+              'enfermedad.enfermedad')
+      //->where("historial.habilitado",0)
       ->orderBy("paciente.id")->get();
       return view("admin.paciente",compact("estado","datos","enfermedad","municipio"));
     }
@@ -58,13 +62,15 @@ $municipio=municipio::orderBy("id")->get();
     {
       $estado=estado::orderBy("id")->get();
       $enfermedad=enfermedad::orderBy("id")->get();
-      $datos=paciente::join("historial","historial.id_paciente","=","paciente.id")
-      ->join("estado","estado.id","=","historial.id_estado")
-      ->join("enfermedad","enfermedad.id","=","paciente.id_enfermedad_base")
+      /*$datos=paciente::join("historial","historial.id_paciente","=","paciente.id")
+      ->join("estado","estado.id","=","historial.id_estado")*/
+      $datos=paciente::join("enfermedad","enfermedad.id","=","paciente.id_enfermedad_base")
       ->select('paciente.id', 'paciente.nombre','paciente.vinculo','paciente.edad','paciente.sexo','paciente.fecha_nacimiento',
               'paciente.telefono','paciente.zona','paciente.domicilio','paciente.observaciones','paciente.longitud','paciente.latitud',
               'paciente.id_enfermedad_base','paciente.nacionalidad','paciente.institucion','paciente.grupo_familiar','paciente.fecha_captacion','paciente.fecha_inicio_sintomas',
-              'historial.id_estado','historial.fecha','estado.estado','enfermedad.enfermedad')
+              'paciente.*',
+              //'historial.id_estado','historial.fecha','estado.estado',
+              'enfermedad.enfermedad')
       ->where("paciente.id",$id)
       ->orderBy("paciente.id")->get();
       return $datos;
@@ -117,14 +123,13 @@ $municipio=municipio::orderBy("id")->get();
     public function VerHistorial($id)
     {
       $muestra=muestra::where("id_paciente",$id)->select("fecha","observacion as dato1","accion")->get();
+      //foreach($muestra as $dato1){ }
+
       $historial=historial::join("estado","estado.id","=","historial.id_estado")
       ->select("historial.fecha","estado.estado as dato1")
       ->where("id_paciente",$id)
       ->get();
-      foreach($muestra as $dato1)
-      {
 
-      }
       $results = array_merge($muestra->toArray(), $historial->toArray());
       usort($results, function($a,$b) {
           return $a['fecha'] < $b['fecha'];
@@ -185,7 +190,8 @@ $municipio=municipio::orderBy("id")->get();
 
     public function BuscarArbol($id)
     {
-      $arbol=paciente::join("arbol","arbol.id_paciente","=","paciente.id")->where("parent_id",$id)->select("paciente.nombre")->get();
+      $arbol=paciente::join("arbol","arbol.id_paciente","=","paciente.id")
+                       ->where("arbol.parent_id",$id)->select("paciente.nombre")->get();
       return $arbol;
     }
     public function BuscarArbolPaciente($id)
@@ -203,4 +209,3 @@ $municipio=municipio::orderBy("id")->get();
       return redirect('Paciente')->with('success','Se registro al paciente al arbol correctamente');
     }
 }
-

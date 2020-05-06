@@ -7,7 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class paciente extends Model
 {
   protected $table = 'paciente';
-  protected $fillable = ['id', 'nombre','vinculo','edad','sexo','fecha_nacimiento','telefono','zona','domicilio','observaciones','longitud','latitud','id_usuario','id_enfermedad_base','nacionalidad','institucion','grupo_familiar','fecha_captacion','fecha_inicio_sintomas','id_municipio'];
+  protected $fillable = ['id', 'grupo_familiar', 'vinculo', 'fecha_nacimiento', 'sexo', 'observaciones', 'estado', 'nacionalidad', 'institucion', 'fecha_captacion', 'fecha_inicio_sintomas',
+                         'id_enfermedad_base', 'id_municipio', 'id_usuario', 'globalid', 'creationdate', 'creator', 'editdate', 'editor', 'nombre', 'paterno', 'materno', 'ci', 'extencion',
+                         'codigopaciente', 'edad', 'telefono', 'zona', 'domicilio', 'sangre', 'contacto_covid', 'situacion_aislamiento', 'nro_familia', 'lugar_actualmente', 'encuestador',
+                         'encuestador_telefono', 'encuestador_observacion', 'fecha_envio', 'situacion_medica', 'informacion_familiar', 'longitud', 'latitud'];
+
+
   public function form_consentimiento()
     {
     	$consentimiento=Consentimiento::where('id_paciente', $this->id)->orderBy('id', 'desc')->first();

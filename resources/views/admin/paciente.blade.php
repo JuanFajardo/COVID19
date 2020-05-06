@@ -65,66 +65,64 @@
             <table class="table table-bordered table-hover dataTables-example" >
             <thead>
             <tr>
-              <th>#</th>
               <th>Paciente</th>
-              <th>Fecha Captacion</th>
-              <th>Nacionalidad</th>
+              <th>Direccion</th>
+              <th>Encuestador</th>
               <th>Familia</th>
               <th>Estado</th>
               <th>Opciones</th>
             </tr>
             </thead>
             <tbody>
-              <?php $i=1;?>
               @foreach($datos as $dato)
             <tr class="gradeC">
-              <td><?php echo $i++;?></td>
-              <td onClick="VerMapaPaciente({{$dato->id}})">{{$dato->nombre}}</td>
-              <td>{{$dato->fecha_captacion}}</td>
-              <td>{{$dato->nacionalidad}}</td>
+              <td onClick="VerMapaPaciente({{$dato->id}})">{{$dato->nombre}} {{$dato->paterno}} {{$dato->materno}}<br> <small>{{$dato->globalid}} </small> </td>
+              <td>{{$dato->domicilio}} <br> <small>{{$dato->zona}}</small> </td>
+              <td> <small><b>{{$dato->encuestador_telefono}}</b></small>  {{$dato->encuestador}}  <br> <small>{{$dato->encuestador_observacion}}</small> </td>
+
               <td onClick="VerMapaDetalle('{{$dato->grupo_familiar}}',1)">{{$dato->grupo_familiar}}</td>
-              <td onClick="VerMapaDetalle('{{$dato->estado}}',2)" class="{{$dato->clase}}">{{$dato->estado}}</td>
+              @foreach($estado as $est)
+              @if($est->estado == $dato->estado)
+                <td onClick="VerMapaDetalle('{{$dato->estado}}',2)" class="{{$est->clase}}">{{$dato->estado}}</td>
+              @endif
+              @endforeach
+
               <td>
-<button class="btn btn-info dim" type="button" id="{{$dato->id}}" onclick="Editar(this.id)" data-toggle="tooltip" data-placement="top" title="Editar">
-  <i class="fa fa-edit"></i>
-</button>
-<button class="btn btn-danger dim" type="button" id="{{$dato->id}}" onclick="Eliminar(this.id)" data-toggle="tooltip" data-placement="top" title="Actualizar / Agregar">
-  <i class="fa fa-list-ul"></i>
-</button>
-<button class="btn btn-success dim" type="button" id="{{$dato->id}}" onclick="Estado(this.id)" data-toggle="tooltip" data-placement="top" title="Actulizar Estado">
-  <i class="fa fa-medkit"></i>
-</button>
-<button class="btn btn-warning dim" type="button" id="{{$dato->id}}" onclick="Historial(this.id)" data-toggle="tooltip" data-placement="top" title="Historial">
-  <i class="fa fa-folder-open"></i>
-</button>
-<button class="btn btn-primary dim" type="button" id="{{$dato->id}}" onclick="AsignarArbol(this.id)" data-toggle="tooltip" data-placement="top" title="Agregar Arbol">
-  <i class="fa fa-sitemap"></i>
-</button>
-                <a href="{{asset('index.php/Laboratorio?paciente='.$dato->id)}}" class="btn btn-danger dim"  data-toggle="tooltip" data-placement="top" title="Laboratorio">
+                <button class="btn btn-info dim" type="button" id="{{$dato->id}}" onclick="Editar(this.id)" data-toggle="tooltip" data-placement="top" title="Editar">
+                  <i class="fa fa-edit"></i>
+                </button>
+                <button class="btn btn-danger dim" type="button" id="{{$dato->id}}" onclick="Eliminar(this.id)" data-toggle="tooltip" data-placement="top" title="Actualizar / Agregar">
+                  <i class="fa fa-list-ul"></i>
+                </button>
+                <button class="btn btn-success dim" type="button" id="{{$dato->id}}" onclick="Estado(this.id)" data-toggle="tooltip" data-placement="top" title="Actulizar Estado">
+                  <i class="fa fa-medkit"></i>
+                </button>
+                <button class="btn btn-warning dim" type="button" id="{{$dato->id}}" onclick="Historial(this.id)" data-toggle="tooltip" data-placement="top" title="Historial">
+                  <i class="fa fa-folder-open"></i>
+                </button>
+                <button class="btn btn-primary dim" type="button" id="{{$dato->id}}" onclick="AsignarArbol(this.id)" data-toggle="tooltip" data-placement="top" title="Agregar Arbol">
+                  <i class="fa fa-sitemap"></i>
+                </button>
+                <a href="{{asset('index.php/Laboratorio?paciente='.$dato->id)}}" class="btn btn-danger dim"  data-toggle="tooltip" data-placement="top" title="Prueba de Laboratorio">
                   <i class="fa fa-eyedropper"></i>
                 </a>
               </td>
             </tr>
             @endforeach
-
             </tbody>
-            <?php if($i>5){?>
             <tfoot>
             <tr>
-              <th>#</th>
               <th>Paciente</th>
-              <th>Fecha Captacion</th>
-              <th>Nacionalidad</th>
+              <th>Direccion</th>
+              <th>Encuestador</th>
               <th>Familia</th>
               <th>Estado</th>
               <th>Opciones</th>
               </tr>
             </tfoot>
-          <?php }?>
             </table>
-                </div>
-
-            </div>
+          </div>
+          </div>
         </div>
     </div>
     </div>
