@@ -14,7 +14,6 @@
         <h2>Formulario de consentimiento de cuarentena </h2>
     </div>
     <div class="col-lg-6">
-
       @if (count($errors) > 0)
       <div class="alert alert-danger">
           <ul>
@@ -56,7 +55,7 @@
       <table class="table">
         <tr>
            <td> NOMBRE *</td>
-           <td> <input class="form-control" type="text" id="nombre" name="nombre" value="{!! $paciente->nombre !!}" class="form-control"  maxlength="20"> </td>
+           <td> <input class="form-control" type="text" id="nombre" name="nombre" value="{!! $paciente->nombre !!} {!! $paciente->paterno !!} {!! $paciente->materno !!}" class="form-control"  maxlength="20" readonly="readonly"> </td>
         </tr>
         <tr>
             <td> CARNET DE IDENTIDAD *</td>
@@ -94,11 +93,11 @@
         <tr>
           <td colspan="2">
             <div class="container-contact100-form-btn">
-          <button class="btn btn-primary">
+          <button class="btn btn-primary" onclick="seleccionar_pos();">
             <span>
               Guardar
               <!-- <input type="submit" value="Save"> -->
-              <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true" type="submit" value="Save"></i>
+              <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true" type="none" value="Save"></i>
             </span>
           </button>
 

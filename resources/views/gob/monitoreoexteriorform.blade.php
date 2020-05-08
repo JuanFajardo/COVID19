@@ -42,7 +42,7 @@
       <table class="table">
         <tr>
             <td> NOMBRE *</td>
-            <td><input type="text" id="nombre" name="nombre" value="{!! $paciente->nombre !!}" class="form-control"  maxlength="20"></td>
+            <td><input type="text" id="nombre" name="nombre" value="{!! $paciente->nombre !!} {!! $paciente->paterno !!} {!! $paciente->materno !!}" class="form-control"  maxlength="20"></td>
         </tr>
         <tr>
             <td colspan="2"> TIPO DE DOCUMENTO *</td>

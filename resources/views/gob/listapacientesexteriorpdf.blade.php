@@ -6,21 +6,23 @@
 </td>
 </tr></table>
 <p></p>
-         <table border="1" border-collapse="collapse" border-spacing="0px" width="100%">
+         <table border=1 cellspacing=0 cellpadding=2 bordercolor="666633" width="100%">
          	<tr align="center">
          		<th>Nombre</td> <td>Tipo de documento</td><td>Numero de documento</td><td>Nacionalidad</td><td>Telefono o whatsapp</td><td>Correo electronico</td><td>Direcciones previstas donde estara en los ultimos 14 dias :</td><td>Comentarios:</td>
           </r> 
             @foreach($pacientes as $paciente)
+            @if($paciente->form_exterior()=='Con formulario')
             <tr>
-               <td>{!! $paciente->nombre !!} </td>
+               <td>{!! $paciente->nombre !!} {!! $paciente->paterno !!} {!! $paciente->materno !!} </td>
                <td>{!! $paciente->tipo_documento() !!}</td>
                <td>{!! $paciente->numero_documento() !!}</td>
-               <td> {!! $paciente->nacionalidad !!}</td>
+               <td>{!! $paciente->nacionalidad !!}</td>
                <td>{!! $paciente->telefono !!}</td>
                <td>{!! $paciente->email() !!}</td>
                <td>{!! $paciente->direcciones_previstas() !!}</td>
                <td>{!! $paciente->comentarios() !!}</td>
             </tr>
+            @endif
             @endforeach
          </table>	
 </body>

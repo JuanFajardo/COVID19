@@ -8,7 +8,7 @@
 <p></p>
          <table>
          	<tr>
-         		<td>Nombre :</td> <td>{!! $paciente->nombre !!}	</td>
+         		<td>Nombre :</td> <td>{!! $paciente->nombre !!}	{!! $paciente->paterno !!} {!! $paciente->materno !!}</td>
           </tr>
           <tr>  
             <td>Tipo de documento : </td><td>{!! $paciente->tipo_documento() !!}</td>

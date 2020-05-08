@@ -19,7 +19,7 @@ un agente infeccioso o a enfermedad, con el objetivo de evitar, disminuir o retr
 transmisión, en este caso, del COVID-19. 
 En este contexto y teniendo conocimiento de la información precedente:</p>
 <p> 
-Yo : {!! $paciente->nombre !!}_________________________________________C.I.________ </p>
+Yo : {!! $paciente->nombre !!} {!! $paciente->paterno !!} {!! $paciente->materno !!}_________________________C.I._{!! $paciente->ci !!} </p>
 
 <p>Domicilio: {!! $paciente->domicilio !!}________________________________Teléfonos:_{!! $paciente->telefono !!}______ </p>
 <p></p> 
@@ -35,8 +35,10 @@ proceso legal por atentar contra la salud pública.</p>
 <p></p> 
 <p></p> 
 <p></p> 
-<p>Croquis domicilio:                   >>>>>>>>>>>>>>>                                                                  Firma: ___________________</p> 
-<img width="600" src="https://maps.googleapis.com/maps/api/staticmap?autoscale=2&center={!! $consentimiento->dom_lat !!},{!! $consentimiento->dom_lon !!}&zoom=18&scale=false&size=600x300&maptype=roadmap&key=AIzaSyAgBFv0lXXtIi4BkhORvmGUlHMupTJFwU0&format=png&visual_refresh=true&markers=size:big%7Ccolor:0xff0000%7Clabel:1%7C{!! $consentimiento->dom_lat !!},{!! $consentimiento->dom_lon !!}" alt="Google Map of {!! $consentimiento->dom_lat !!},{!! $consentimiento->dom_lon !!}">
- 
+<p></p> 
+<p>Croquis domicilio:                                                                                     </p> 
+<img width="550" src="https://maps.googleapis.com/maps/api/staticmap?autoscale=2&center={!! $consentimiento->dom_lat !!},{!! $consentimiento->dom_lon !!}&zoom=18&scale=false&size=600x300&maptype=roadmap&key=AIzaSyAgBFv0lXXtIi4BkhORvmGUlHMupTJFwU0&format=png&visual_refresh=true&markers=size:big%7Ccolor:0xff0000%7Clabel:1%7C{!! $consentimiento->dom_lat !!},{!! $consentimiento->dom_lon !!}" alt="Google Map of {!! $consentimiento->dom_lat !!},{!! $consentimiento->dom_lon !!}">
+<p>
+Firma: ___________________ </p>
 </body>
 </html>

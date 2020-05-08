@@ -41,8 +41,8 @@ class PaginasController extends Controller
           // Seteamos las propiedades
           $consentimiento->fecha_aceptacion = $fecha;
           $consentimiento->hora_aceptacion = $hora;
-          $consentimiento->dom_lon = 2;
-          $consentimiento->dom_lat = 2;
+          $consentimiento->dom_lon = $paciente->longitud;
+          $consentimiento->dom_lat = $paciente->latitud;
           $consentimiento->documento = '';
           $consentimiento->id_paciente = $id;
           $consentimiento->id=0;
@@ -279,6 +279,8 @@ class PaginasController extends Controller
     {
       $pacientes = Paciente::all();
       $pdf = PDF::loadView('gob.listapacientesexteriorpdf', compact('pacientes'));
+      $pdf->setPaper('A4', 'landscape');
+
         return $pdf->download('listado.pdf');
     }
     public function tarjetapacienteexteriorpdf()
