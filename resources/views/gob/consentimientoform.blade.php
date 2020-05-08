@@ -107,7 +107,7 @@
 
         </table> 
       
-     <iframe src="/vermapasimple/?dom_lat={!! $consentimiento->dom_lat !!}&dom_lon={!! $consentimiento->dom_lon !!}" frameborder="0" style="border:0; width: 100%; height: 420px;" allowfullscreen></iframe>
+     <iframe src="/index.php/vermapasimple/?dom_lat={!! $consentimiento->dom_lat !!}&dom_lon={!! $consentimiento->dom_lon !!}" frameborder="0" style="border:0; width: 100%; height: 420px;" allowfullscreen></iframe>
      <p>
       .
      </p> 

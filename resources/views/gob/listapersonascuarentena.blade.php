@@ -88,8 +88,8 @@
                     @foreach($contactos as $contacto)
                     <tr>
                     <td>{!! $contacto->id !!}</td><td>{!! $contacto->nombre !!} {!! $contacto->apellido_p !!} {!! $contacto->apellido_m !!}</td><td>{!! $contacto->vinculo !!}</td><td>{!! $contacto->edad !!}</td><td>{!! $contacto->domicilio !!}</td><td>{!! $contacto->celular !!}</td><td>{!! $contacto->enfermedad_base !!}</td><td>{!! $contacto->fecha_contacto !!}</td><td>{!! $contacto->sintomas !!}</td><td>{!! $contacto->f !!}</td><td>{!! $contacto->ts !!}</td><td>{!! $contacto->dr !!}</td><td>{!! $contacto->c !!}</td><td>{!! $contacto->dg !!}</td><td>{!! $contacto->dt !!}</td><td>{!! $contacto->a !!}</td><td>{!! $contacto->edad !!}</td><td>{!! $contacto->observaciones !!}</td><td>
-                        <a href="/modificarcontacto/?id={!! $contacto->id !!}"><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button></a>
-                        <a href="/eliminarcontacto/?id={!! $contacto->id !!}"><button type="button" class="btn btn-danger btn-sm"><i class="fa fa-remove"></i></button></a></td>
+                        <a href="/index.php/modificarcontacto/?id={!! $contacto->id !!}"><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button></a>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

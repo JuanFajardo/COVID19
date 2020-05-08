@@ -61,8 +61,8 @@
                 <tbody>
                     @foreach($pacientes as $paciente)
                     <tr>
-                    <td>{!! $paciente->id !!}</td><td>{!! $paciente->nombre !!}</td><td>{!! $paciente->domicilio !!}</td><td>{!! $paciente->telefono !!}</td><td>{!! $paciente->id_estado !!}</td><td align="center"><a href="{{asset('/tarjetamonitoreoform/')}}?id={!! $paciente->id !!}"><button type="button" class="btn @if ($paciente->form_consentimiento()=='Con formulario')btn-primary btn-sm @else btn-secondary @endif"><i class="fa fa-file-pdf"> - {!! $paciente->form_consentimiento() !!}</i></button></a></td><td>
-                        <a href="{{asset('/tarjetamonitoreopdf/')}}?id={!! $paciente->id !!}"><button type="button" class="btn btn-warning btn-sm"><i class="fa fa-print"></i></button></a>
+                    <td>{!! $paciente->id !!}</td><td>{!! $paciente->nombre !!}</td><td>{!! $paciente->domicilio !!}</td><td>{!! $paciente->telefono !!}</td><td>{!! $paciente->id_estado !!}</td><td align="center"><a href="{{asset('/index.php/tarjetamonitoreoform/')}}?id={!! $paciente->id !!}"><button type="button" class="btn @if ($paciente->form_consentimiento()=='Con formulario')btn-primary btn-sm @else btn-secondary @endif"><i class="fa fa-file-pdf"> - {!! $paciente->form_consentimiento() !!}</i></button></a></td><td>
+                        <a href="{{asset('/index.php/tarjetamonitoreopdf/')}}?id={!! $paciente->id !!}"><button type="button" class="btn btn-warning btn-sm"><i class="fa fa-print"></i></button></a>
                         </td>
                     </tr>
                     @endforeach

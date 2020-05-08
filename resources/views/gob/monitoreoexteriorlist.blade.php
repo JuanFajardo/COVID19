@@ -76,15 +76,15 @@
                 <tbody>
                     @foreach($pacientes as $paciente)
                     <tr>
-                    <td>{!! $paciente->id !!}</td><td>{!! $paciente->nombre !!} {!! $paciente->paterno !!} {!! $paciente->materno !!}</td><td>{!! $paciente->domicilio !!}</td><td>{!! $paciente->telefono !!}</td><td>{!! $paciente->estado !!}</td><td align="center"><a href="{{asset('/monitoreoexteriorform/')}}?id={!! $paciente->id !!}"><button type="button" class="btn @if ($paciente->form_exterior()=='Con formulario')btn-primary btn-sm @else btn-secondary @endif"><i class="fa fa-file-pdf"> - {!! $paciente->form_exterior() !!}</i></button></a></td><td>
-                        <a href="{{asset('/tarjetapacienteexteriorpdf/')}}?id={!! $paciente->id !!}"><button type="button" class="btn btn-warning btn-sm"><i class="fa fa-print"></i></button></a>
+                    <td>{!! $paciente->id !!}</td><td>{!! $paciente->nombre !!} {!! $paciente->paterno !!} {!! $paciente->materno !!}</td><td>{!! $paciente->domicilio !!}</td><td>{!! $paciente->telefono !!}</td><td>{!! $paciente->estado !!}</td><td align="center"><a href="{{asset('/index.php/monitoreoexteriorform/')}}?id={!! $paciente->id !!}"><button type="button" class="btn @if ($paciente->form_exterior()=='Con formulario')btn-primary btn-sm @else btn-secondary @endif"><i class="fa fa-file-pdf"> - {!! $paciente->form_exterior() !!}</i></button></a></td><td>
+                        <a href="{{asset('/index.php/tarjetapacienteexteriorpdf/')}}?id={!! $paciente->id !!}"><button type="button" class="btn btn-warning btn-sm"><i class="fa fa-print"></i></button></a>
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
                 </table>
-                <a href="{{asset('/monitoreoexteriorform/')}}"><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>Nuevo tarjeta</button></a>
-                        <a href="{{asset('/listapacientesexterior/')}}"><button type="button" class="btn btn-danger btn-sm"><i class="fa fa-print"></i>Imprimir lista de tarjetas</button></a>
+                <a href="{{asset('/index.php/monitoreoexteriorform/')}}"><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>Nuevo tarjeta</button></a>
+                        <a href="{{asset('/index.php/listapacientesexterior/')}}"><button type="button" class="btn btn-danger btn-sm"><i class="fa fa-print"></i>Imprimir lista de tarjetas</button></a>
             </div>
                 
               </div>
