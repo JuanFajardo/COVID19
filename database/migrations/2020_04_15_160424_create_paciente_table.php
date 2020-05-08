@@ -32,7 +32,7 @@ class CreatePacienteTable extends Migration
             $table->smallInteger('id_enfermedad_base')->nullable();
             $table->smallInteger('id_municipio')->nullable();
             $table->smallInteger('id_usuario');
-            
+
             $table->string('globalid', 50)->nullable();
             $table->dateTime('creationdate')->nullable();
             $table->string('creator', 50)->nullable();
@@ -41,24 +41,24 @@ class CreatePacienteTable extends Migration
             $table->string('nombre')->nullable();
             $table->string('paterno', 50)->nullable();
             $table->string('materno', 50)->nullable();
-            $table->string('ci', 25)->nullable();
-            $table->string('extencion', 25)->nullable();
-            $table->string('codigopaciente', 25)->nullable();
+            $table->string('ci', 50)->nullable();
+            $table->string('extencion', 50)->nullable();
+            $table->string('codigopaciente', 50)->nullable();
             $table->smallInteger('edad')->nullable()->default('0');
             $table->string('telefono')->nullable();
             $table->string('zona')->nullable();
             $table->string('domicilio')->nullable();
-            $table->string('sangre', 25)->nullable()->comment('grupo sangineo');
-            $table->string('contacto_covid', 25)->nullable()->comment('contacto_directo/contacto_indirecto');
-            $table->string('situacion_aislamiento', 25)->nullable();
-            $table->string('nro_familia', 25)->nullable();
+            $table->string('sangre', 50)->nullable()->comment('grupo sangineo');
+            $table->string('contacto_covid', 50)->nullable()->comment('contacto_directo/contacto_indirecto');
+            $table->string('situacion_aislamiento', 50)->nullable();
+            $table->string('nro_familia', 50)->nullable();
             $table->string('lugar_actualmente')->nullable();
             $table->string('encuestador')->nullable();
             $table->string('encuestador_telefono')->nullable();
             $table->text('encuestador_observacion')->nullable();
             $table->dateTime('fecha_envio')->nullable();
-            $table->string('situacion_medica',25)->nullable();
-            $table->string('informacion_familiar',25)->nullable();
+            $table->string('situacion_medica', 50)->nullable();
+            $table->string('informacion_familiar', 50)->nullable();
             $table->double('longitud');
             $table->double('latitud');
 
