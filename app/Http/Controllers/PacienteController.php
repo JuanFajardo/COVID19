@@ -144,13 +144,14 @@ class PacienteController extends Controller
     }
     public function BuscarPacienteEstado($id)
     {
-      $datos=paciente::join("historial","historial.id_paciente","=","paciente.id")
-      ->join("estado","estado.id","=","historial.id_estado")
-      ->join("enfermedad","enfermedad.id","=","paciente.id_enfermedad_base")
-      ->select('paciente.grupo_familiar','paciente.longitud','paciente.latitud',
-              'historial.habilitado','estado.estado')
-      ->where("historial.habilitado",0)
-      ->where("estado.estado",$id)
+      // $datos=paciente::join("historial","historial.id_paciente","=","paciente.id")
+      // ->join("estado","estado.id","=","historial.id_estado")
+      $datos=paciente::join("enfermedad","enfermedad.id","=","paciente.id_enfermedad_base")
+      ->select('paciente.grupo_familiar','paciente.longitud','paciente.latitud'
+              //'historial.habilitado','estado.estado'
+              )
+      //->where("historial.habilitado",0)
+      ->where("paciente.estado",$id)
       ->orderBy("paciente.latitud")->get();
       return $datos;
     }

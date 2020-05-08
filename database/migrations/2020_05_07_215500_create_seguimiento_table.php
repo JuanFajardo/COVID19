@@ -22,8 +22,8 @@ class CreateSeguimientoTable extends Migration
             $table->text('dificultad_respiratoria');
             $table->text('responsable');
             $table->smallInteger('id_tarjetamonitoreo');
-            $table->date('created_at');
-            $table->date('updated_at');
+            //$table->date('created_at');
+            //$table->date('updated_at');
             $table->timestamps();
         });
     }
@@ -37,3 +37,4 @@ class CreateSeguimientoTable extends Migration
     {
         Schema::dropIfExists('seguimiento');
     }
+}    

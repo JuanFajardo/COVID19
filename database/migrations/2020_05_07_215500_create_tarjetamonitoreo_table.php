@@ -23,8 +23,8 @@ class CreateTarjetaMonitoreoTable extends Migration
             $table->date('fecha_derivacion');
             $table->text('nombre_medico_deriva');
             $table->smallInteger('id_paciente');
-            $table->date('created_at');
-            $table->date('updated_at');
+            //$table->date('created_at');
+            //$table->date('updated_at');
             $table->timestamps();
         });
     }
@@ -38,3 +38,4 @@ class CreateTarjetaMonitoreoTable extends Migration
     {
         Schema::dropIfExists('tarjetamonitoreo');
     }
+}

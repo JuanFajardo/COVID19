@@ -20,8 +20,8 @@ class CreateConsentimientoTable extends Migration
             $table->double('dom_lon');
             $table->double('dom_lat');
             $table->text('documento');
-            $table->date('created_at');
-            $table->date('updated_at');
+            // $table->date('created_at');
+            // $table->date('updated_at');
             $table->smallInteger('id_paciente');
             $table->timestamps();
         });
