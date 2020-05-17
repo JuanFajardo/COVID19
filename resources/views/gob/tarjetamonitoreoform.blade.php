@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('menu2')class="active"@endsection
-@section('submenu23')class="active"@endsection
+@section('submenu25')class="active"@endsection
 
 @section('ruta')
 <style>.modal-xl {
