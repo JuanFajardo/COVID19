@@ -84,6 +84,7 @@ class PaginasController extends Controller
           $tarjetamonitoreo->fecha_derivacion = '';
           $tarjetamonitoreo->nombre_medio_deriva = '';
           $tarjetamonitoreo->id_paciente = $id;
+          $tarjetamonitoreo->id=0;
           $dias1 = array(["1", $fecha,'','','',''],["2", date("Y-m-d",strtotime($fecha."+ 1 days")),'','','',''], ["3", date("Y-m-d",strtotime($fecha."+ 2 days")),'','','',''],["4", date("Y-m-d",strtotime($fecha."+ 3 days")),'','','',''], ["5", date("Y-m-d",strtotime($fecha."+ 4 days")),'','','',''], ["6", date("Y-m-d",strtotime($fecha."+ 5 days")),'','','',''], ["7", date("Y-m-d",strtotime($fecha."+ 6 days")),'','','',''], ["8", date("Y-m-d",strtotime($fecha."+ 7 days")),'','','',''], ["9", date("Y-m-d",strtotime($fecha."+ 8 days")),'','','',''], ["10", date("Y-m-d",strtotime($fecha."+ 9 days")),'','','',''],["11", date("Y-m-d",strtotime($fecha."+ 10 days")),'','','',''],["12", date("Y-m-d",strtotime($fecha."+ 11 days")),'','','',''], ["13", date("Y-m-d",strtotime($fecha."+ 12 days")),'','','',''], ["14", date("Y-m-d",strtotime($fecha."+ 13 days")),'','','','']);
 
           return view('gob.tarjetamonitoreoform')->with('paciente', $paciente)->with('tarjetamonitoreo', $tarjetamonitoreo)->with('dias', $dias1);
@@ -158,7 +159,7 @@ class PaginasController extends Controller
          $tarjetamonitoreo->id_paciente=request('id_paciente');
          $tarjetamonitoreo->save();
          for($i=0;$i<=13;$i++){
-             $seguimiento = Seguimiento::where('id_tarjetamonitoreo', $id)->where('dia', $i + 1)->first();
+             $seguimiento = Seguimiento::where('id_tarjetamonitoreo', $tarjetamonitoreo->id)->where('dia', $i + 1)->first();
              if ($seguimiento){
              }
              else{
@@ -170,8 +171,8 @@ class PaginasController extends Controller
              $seguimiento->temperatura = $request->input('temperatura.'.$i);
              $seguimiento->tos = $request->input('tos.'.$i);
              $seguimiento->dificultad_respiratoria = $request->input('dificultad_respiratoria.'.$i);
-             $seguimiento->responsable = $request->input('responsable.'.$i);;
-             $seguimiento->id_tarjetamonitoreo = $id;
+             $seguimiento->responsable = $request->input('responsable.'.$i);
+             $seguimiento->id_tarjetamonitoreo = $tarjetamonitoreo->id;
              $seguimiento->save();
          }
       }
@@ -186,7 +187,9 @@ class PaginasController extends Controller
          $tarjetamonitoreo->fecha_derivacion=request('fecha_derivacion');
          $tarjetamonitoreo->nombre_medico_deriva=request('nombre_medico_deriva');
          $tarjetamonitoreo->id_paciente=request('id_paciente');
-         $id_tarjetamonitoreo=$tarjetamonitoreo->save();
+         $tarjetamonitoreo->save();
+         $tarjetamonitoreo=Tarjetamonitoreo::where('id_paciente', request('id_paciente'))->first();
+
          for($i=0;$i<=13;$i++){
              $seguimiento = new Seguimiento();
              $seguimiento->dia = $request->input('dia.'.$i);
@@ -194,8 +197,8 @@ class PaginasController extends Controller
              $seguimiento->temperatura = $request->input('temperatura.'.$i);
              $seguimiento->tos = $request->input('tos.'.$i);
              $seguimiento->dificultad_respiratoria = $request->input('dificultad_respiratoria.'.$i);
-             $seguimiento->responsable = $request->input('responsable.'.$i);;
-             $seguimiento->id_tarjetamonitoreo = $id_tarjetamonitoreo;
+             $seguimiento->responsable = $request->input('responsable.'.$i);
+             $seguimiento->id_tarjetamonitoreo = $tarjetamonitoreo->id;
              $seguimiento->save();
          }
       }
@@ -208,6 +211,7 @@ class PaginasController extends Controller
       $id=request('id', '0');
       $paciente = Paciente::find($id);
       $tarjetamonitoreo = Tarjetamonitoreo::where('id_paciente', $id)->first();
+      $dias = [];
       if ($tarjetamonitoreo)
       {
           $fecha = $tarjetamonitoreo->fecha_inicio;
@@ -217,6 +221,24 @@ class PaginasController extends Controller
             $unarray = [$seguimiento->dia, $seguimiento->fecha, $seguimiento->temperatura, $seguimiento->tos, $seguimiento->dificultad_respiratoria, $seguimiento->responsable];
             array_push($dias, $unarray);
           }
+      }
+      else
+      {
+        $tarjetamonitoreo = new Tarjetamonitoreo();
+         $fecha = date('Y-m-d');
+          $hora = date('G')-4;
+          $minuto = date('i');
+          $hora = $hora.':'.$minuto.':00';
+          // Seteamos las propiedades
+          $tarjetamonitoreo->fecha_inicio = $fecha;
+          $tarjetamonitoreo->fecha_fin = '';
+          $tarjetamonitoreo->mayor_60 = '';
+          $tarjetamonitoreo->comorbilidades = '';
+          $tarjetamonitoreo->lugar_referencia = '';
+          $tarjetamonitoreo->fecha_derivacion = '';
+          $tarjetamonitoreo->nombre_medio_deriva = '';
+          $tarjetamonitoreo->id_paciente = $id;
+          $dias1 = array(["1", $fecha,'','','',''],["2", date("Y-m-d",strtotime($fecha."+ 1 days")),'','','',''], ["3", date("Y-m-d",strtotime($fecha."+ 2 days")),'','','',''],["4", date("Y-m-d",strtotime($fecha."+ 3 days")),'','','',''], ["5", date("Y-m-d",strtotime($fecha."+ 4 days")),'','','',''], ["6", date("Y-m-d",strtotime($fecha."+ 5 days")),'','','',''], ["7", date("Y-m-d",strtotime($fecha."+ 6 days")),'','','',''], ["8", date("Y-m-d",strtotime($fecha."+ 7 days")),'','','',''], ["9", date("Y-m-d",strtotime($fecha."+ 8 days")),'','','',''], ["10", date("Y-m-d",strtotime($fecha."+ 9 days")),'','','',''],["11", date("Y-m-d",strtotime($fecha."+ 10 days")),'','','',''],["12", date("Y-m-d",strtotime($fecha."+ 11 days")),'','','',''], ["13", date("Y-m-d",strtotime($fecha."+ 12 days")),'','','',''], ["14", date("Y-m-d",strtotime($fecha."+ 13 days")),'','','','']);
       }
         $pdf = PDF::loadView('gob.tarjetamonitoreopdf', compact('paciente', 'tarjetamonitoreo', 'dias'));
         return $pdf->download('listado.pdf');
