@@ -23,18 +23,18 @@ class PacienteController extends Controller
       $estado=estado::orderBy("id")->get();
       $enfermedad=enfermedad::orderBy("id")->get();
 
-      /*$datos=paciente::join("historial","historial.id_paciente","=","paciente.id")
-      ->join("estado","estado.id","=","historial.id_estado")*/
 
       $datos=paciente::join("enfermedad","enfermedad.id","=","paciente.id_enfermedad_base")
+      ->join("historial","historial.id_paciente","=","paciente.id")
+      ->join("estado","estado.id","=","historial.id_estado")
       ->select('paciente.id', 'paciente.nombre','paciente.vinculo','paciente.edad','paciente.sexo','paciente.fecha_nacimiento',
               'paciente.telefono','paciente.zona','paciente.domicilio','paciente.observaciones','paciente.longitud','paciente.latitud',
               'paciente.id_enfermedad_base','paciente.nacionalidad','paciente.institucion','paciente.grupo_familiar','paciente.fecha_captacion','paciente.fecha_inicio_sintomas',
               'paciente.*',
-              //'historial.id_estado','historial.fecha','estado.estado','estado.clase',
+              'historial.id_estado','historial.fecha','estado.estado','estado.clase',
               'enfermedad.enfermedad')
-      //->where("historial.habilitado",0)
-      ->orderBy("paciente.id")->get();
+    	      ->where("historial.habilitado",0)
+	      ->orderBy("paciente.id")->get();
       return view("admin.paciente",compact("estado","datos","enfermedad","municipio"));
     }
 
@@ -158,12 +158,12 @@ class PacienteController extends Controller
 
     public function Arbol()
     {
-      $datos=arbol::join("paciente","paciente.id","=","arbol.id_paciente")->select("paciente.nombre as name","arbol.id","arbol.parent_id")->orderBy("arbol.parent_id")->get();
+      $datos=arbol::join("paciente","paciente.id","=","arbol.id_paciente")->select("paciente.nombre as name","paciente.paterno","paciente.materno","arbol.id","arbol.parent_id")->orderBy("arbol.parent_id")->get();
       foreach($datos as $result)
       {
         $sub_data["id"] = $result->id;
-        $sub_data["name"] = $result->name;
-        $sub_data["text"] = $result->name;
+        $sub_data["name"] = $result->name." ".$result->paterno." ".$result->materno;
+        $sub_data["text"] = $result->name." ".$result->paterno." ".$result->materno;
         $sub_data["parent_id"] = $result->parent_id;
         $data[] = $sub_data;
       }

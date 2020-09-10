@@ -45,25 +45,8 @@
                     <a href="{{asset('index.php/home')}}"><i class="fa fa-home"></i> <span class="nav-label">Inicio</span></a>
                 </li>
                 <li @yield("menu1")>
-                    <a href="index.html"><i class="fa fa-map"></i> <span class="nav-label">Mapa</span> <span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li yield("submenu11")>
-                            <a href="{{asset('/index.php/Tipo')}}">Tipo</a>
-                        </li>
-                        <li yield("submenu12")>
-                            <a href="{{asset('/index.php/Puntos')}}">Puntos</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="{{asset('/index.php/Fumigacion')}}"><i class="fa fa-arrows"></i> <span class="nav-label">Fumigacion</span></a>
-                </li>
-
                 <li  @yield("institucion")>
                     <a href="{{asset('/index.php/Institucion')}}"><i class="fa fa-bank"></i> <span class="nav-label">Instituciones</span></a>
-                </li>
-                <li @yield("laboratorio")>
-                    <a href="{{asset('/index.php/Prueba')}}"><i class="fa fa-eyedropper"></i> <span class="nav-label">Pruebas de Laboratorio</span></a>
                 </li>
 
                 <li @yield("menu2")>
@@ -78,8 +61,11 @@
                       <li @yield("submenu23")>
                           <a href="{{asset('/index.php/Paciente')}}">Paciente</a>
                       </li>
+	              <li @yield("laboratorio")>
+        	          <a href="{{asset('/index.php/Prueba')}}">Pruebas de Laboratorio</span></a>
+                      </li>
                       <li @yield("submenu24")>
-                          <a href="{{asset('/index.php/Laboratorio')}}">Laboratorio</a>
+                          <a href="{{asset('/index.php/Laboratorio')}}">Datos Clinicos Paciente</a>
                       </li>
                       <li @yield("submenu25")>
                           <a href="{{asset('/index.php/monitoreoexteriorlist')}}">Ingreso personas exterior</a>
@@ -91,12 +77,6 @@
                           <a href="{{asset('/index.php/tarjetamonitoreo')}}">Tarjeta monitoreo individual</a>
                       </li>
                     </ul>
-                </li>
-                <li>
-                    <a href="{{asset('/Usuarios')}}"><i class="fa fa-group"></i> <span class="nav-label">Usuarios</span></a>
-                </li>
-                <li>
-                    <a href="{{asset('/Reportes')}}"><i class="fa fa-file-pdf-o"></i> <span class="nav-label">Reportes</span></a>
                 </li>
             </ul>
 
